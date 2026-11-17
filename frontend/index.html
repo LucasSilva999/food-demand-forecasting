@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FoodForecast — intelligent food demand forecasting and machine learning analytics.">
+    <meta name="theme-color" content="#080d19">
+
+    <title>FoodForecast | Demand Intelligence</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="dashboard">
+
+        <!-- SIDEBAR / HEADER -->
+        <header class="topbar">
+
+            <a href="#overview" class="brand">
+                <span class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4 17.5 12 3l8 14.5H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        <path d="M8 17.5 12 10l4 7.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        <path d="M12 10v7.5" stroke="currentColor" stroke-width="1.8"/>
+                    </svg>
+                </span>
+
+                <span class="brand-text">
+                    <strong>FoodForecast</strong>
+                    <small>DEMAND INTELLIGENCE</small>
+                </span>
+            </a>
+
+            <nav class="navigation" aria-label="Main navigation">
+
+                <a href="#overview" class="active">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect x="3" y="3" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                        <rect x="13" y="3" width="8" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                        <rect x="13" y="10" width="8" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                        <rect x="3" y="13" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                    </svg>
+                    <span>Overview</span>
+                </a>
+
+                <a href="#analytics">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M3 3v18h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                        <path d="m7 14 4-4 4 3 6-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Analytics</span>
+                </a>
+
+                <a href="#prediction">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 3v3m0 12v3M3 12h3m12 0h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                        <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="m9.5 12 1.7 1.7 3.5-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Prediction</span>
+                </a>
+
+                <a href="#model">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M9 9h6v6H9zM9 2v2m6-2v2M9 20v2m6-2v2M2 9h2m-2 6h2m16-6h2m-2 6h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    </svg>
+                    <span>Model</span>
+                </a>
+
+            </nav>
+
+            <div class="topbar-status">
+                <span class="status-indicator">
+                    <span id="api-status-dot" class="status-dot"></span>
+                </span>
+
+                <span class="status-copy">
+                    <strong id="api-status-text">Checking API...</strong>
+                    <small>MODEL SERVICE</small>
+                </span>
+            </div>
+
+        </header>
+
+        <main>
+
+            <!-- PAGE INTRODUCTION -->
+            <section class="page-heading" id="overview">
+
+                <div class="heading-content">
+                    <div class="eyebrow">
+                        <span class="eyebrow-line"></span>
+                        MACHINE LEARNING PLATFORM
+                    </div>
+
+                    <h1>Demand <span>Analytics</span></h1>
+
+                    <p class="subtitle">
+                        Monitor forecasts, understand demand patterns and explore
+                        intelligent predictions.
+                    </p>
+                </div>
+
+                <div class="heading-meta">
+
+                    <div class="model-badge">
+                        <span class="badge-indicator"></span>
+                        <span>Gradient Boosting</span>
+                    </div>
+
+                    <div class="date-display">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                            <path d="M16 3v4M8 3v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                        </svg>
+                        <span id="current-date"></span>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- PERFORMANCE METRICS -->
+            <section class="metrics-grid" aria-label="Model performance metrics">
+
+                <article class="metric-card metric-blue">
+
+                    <div class="metric-top">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M4 18 9 13l3 3 8-9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 7h5v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="metric-tag">ERROR METRIC</span>
+                    </div>
+
+                    <span class="metric-label">Mean Absolute Error</span>
+                    <strong class="metric-value">6.068</strong>
+
+                    <div class="metric-bottom">
+                        <span class="metric-description">Orders · Test set</span>
+                        <span class="metric-indicator">MAE</span>
+                    </div>
+
+                </article>
+
+                <article class="metric-card metric-purple">
+
+                    <div class="metric-top">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M4 19 9 14l3 3 8-10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 7h5v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 5v14h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="metric-tag">ERROR METRIC</span>
+                    </div>
+
+                    <span class="metric-label">Root Mean Squared Error</span>
+                    <strong class="metric-value">7.641</strong>
+
+                    <div class="metric-bottom">
+                        <span class="metric-description">Orders · Test set</span>
+                        <span class="metric-indicator">RMSE</span>
+                    </div>
+
+                </article>
+
+                <article class="metric-card metric-green">
+
+                    <div class="metric-top">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+                                <path d="m8 12 2.5 2.5L16.5 9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="metric-tag">GOODNESS OF FIT</span>
+                    </div>
+
+                    <span class="metric-label">R² Score</span>
+                    <strong class="metric-value">0.801</strong>
+
+                    <div class="metric-bottom">
+                        <span class="metric-description">Model performance</span>
+                        <span class="metric-indicator">R²</span>
+                    </div>
+
+                </article>
+
+                <article class="metric-card metric-orange">
+
+                    <div class="metric-top">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="m13 2-3 9h7l-6 11 2-9H6l7-11Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="metric-tag">VS. BASELINE</span>
+                    </div>
+
+                    <span class="metric-label">Baseline Improvement</span>
+                    <strong class="metric-value">55.59%</strong>
+
+                    <div class="metric-bottom">
+                        <span class="metric-description">MAE reduction</span>
+                        <span class="metric-indicator">GAIN</span>
+                    </div>
+
+                </article>
+
+            </section>
+
+            <!-- HOURLY FORECAST -->
+            <section class="panel chart-panel" id="analytics">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <div class="eyebrow">
+                            <span class="eyebrow-line"></span>
+                            FORECAST OVERVIEW
+                        </div>
+
+                        <h2>Hourly Demand Forecast</h2>
+
+                        <p class="panel-description">
+                            Explore predicted order volume throughout the day.
+                        </p>
+                    </div>
+
+                    <div class="chart-heading-meta">
+                        <span class="chart-period">
+                            <span class="period-dot"></span>
+                            24 HOURS
+                        </span>
+                        <span id="chart-scenario" class="chart-scenario">
+                            Current scenario
+                        </span>
+                    </div>
+
+                </div>
+
+                <div id="demand-chart" class="chart-container">
+                    <div class="chart-loading">
+                        Loading demand forecast...
+                    </div>
+                </div>
+
+                <div class="chart-footer">
+
+                    <div class="chart-legend">
+                        <span class="legend-dot"></span>
+                        <span>Predicted demand</span>
+                    </div>
+
+                    <span id="chart-summary">
+                        Waiting for forecast data
+                    </span>
+
+                </div>
+
+            </section>
+
+            <!-- MODEL + PREDICTION -->
+            <section class="bottom-grid">
+
+                <!-- MODEL INFORMATION -->
+                <article class="panel model-panel" id="model">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <div class="eyebrow">
+                                <span class="eyebrow-line"></span>
+                                MODEL INFORMATION
+                            </div>
+
+                            <h2>Model Performance</h2>
+
+                            <p class="panel-description">
+                                Training and validation configuration.
+                            </p>
+                        </div>
+
+                        <span class="model-status">
+                            <span class="model-status-dot"></span>
+                            Selected
+                        </span>
+
+                    </div>
+
+                    <div class="model-highlight">
+
+                        <div class="model-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/>
+                                <path d="M9 9h6v6H9zM9 2v2m6-2v2M9 20v2m6-2v2M2 9h2m-2 6h2m16-6h2m-2 6h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+
+                        <div>
+                            <strong>Gradient Boosting</strong>
+                            <span>Demand regression model</span>
+                        </div>
+
+                        <span class="model-version">ML MODEL</span>
+
+                    </div>
+
+                    <div class="model-details">
+
+                        <div class="detail-row">
+                            <span>Cross-validation MAE</span>
+                            <strong>5.910 ± 0.155</strong>
+                        </div>
+
+                        <div class="detail-row">
+                            <span>Validation strategy</span>
+                            <strong>TimeSeriesSplit</strong>
+                        </div>
+
+                        <div class="detail-row">
+                            <span>Validation folds</span>
+                            <strong>3 folds</strong>
+                        </div>
+
+                        <div class="detail-row">
+                            <span>Hyperparameter search</span>
+                            <strong>36 combinations</strong>
+                        </div>
+
+                        <div class="detail-row">
+                            <span>Train / test split</span>
+                            <strong>80% / 20%</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="model-footer">
+                        <span class="model-footer-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="m12 3 8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                                <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                        <span>Chronological validation strategy</span>
+                    </div>
+
+                </article>
+
+                <!-- PREDICTION FORM -->
+                <article class="panel prediction-panel" id="prediction">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <div class="eyebrow">
+                                <span class="eyebrow-line"></span>
+                                LIVE MODEL INFERENCE
+                            </div>
+
+                            <h2>Demand Prediction</h2>
+
+                            <p class="panel-description">
+                                Configure a scenario to estimate order volume.
+                            </p>
+                        </div>
+
+                        <span class="prediction-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M12 3v3m0 12v3M3 12h3m12 0h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                                <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.7"/>
+                                <path d="m9.5 12 1.7 1.7 3.5-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+
+                    </div>
+
+                    <form id="prediction-form">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="hour">Hour</label>
+
+                                <div class="input-wrapper">
+                                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/>
+                                        <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                                    </svg>
+
+                                    <input
+                                        type="number"
+                                        id="hour"
+                                        min="0"
+                                        max="23"
+                                        value="19"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="weekday">Weekday</label>
+
+                                <select id="weekday">
+                                    <option value="0">Monday</option>
+                                    <option value="1">Tuesday</option>
+                                    <option value="2">Wednesday</option>
+                                    <option value="3">Thursday</option>
+                                    <option value="4">Friday</option>
+                                    <option value="5" selected>Saturday</option>
+                                    <option value="6">Sunday</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="promotion">Promotion</label>
+
+                                <select id="promotion">
+                                    <option value="0">No promotion</option>
+                                    <option value="1" selected>Active</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="weather">Weather</label>
+
+                                <select id="weather">
+                                    <option value="sunny">Sunny</option>
+                                    <option value="cloudy">Cloudy</option>
+                                    <option value="rain" selected>Rain</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="zone">Delivery zone</label>
+
+                                <select id="zone">
+                                    <option value="central" selected>Central</option>
+                                    <option value="north">North</option>
+                                    <option value="south">South</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" id="predict-button">
+
+                            <span class="button-label">
+                                Generate prediction
+                            </span>
+
+                            <span class="button-arrow" aria-hidden="true">
+                                →
+                            </span>
+
+                        </button>
+
+                    </form>
+
+                    <div
+                        id="prediction-result"
+                        class="prediction-result hidden"
+                        aria-live="polite"
+                    >
+
+                        <div class="result-top">
+                            <span class="result-label">Predicted orders</span>
+
+                            <span class="result-status">
+                                <span class="result-status-dot"></span>
+                                Prediction ready
+                            </span>
+                        </div>
+
+                        <div class="result-value-row">
+                            <strong id="predicted-orders">—</strong>
+                            <span class="result-unit">orders</span>
+                        </div>
+
+                        <p id="prediction-context" class="result-context"></p>
+
+                    </div>
+
+                    <p
+                        id="prediction-error"
+                        class="error-message hidden"
+                        role="alert"
+                    ></p>
+
+                </article>
+
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="dashboard-footer">
+
+                <div class="footer-brand">
+                    <span class="footer-brand-icon">F</span>
+                    <span>FoodForecast</span>
+                </div>
+
+                <span>Food Demand Forecasting · Machine Learning Analytics</span>
+
+                <span class="footer-version">PROJECT DASHBOARD</span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

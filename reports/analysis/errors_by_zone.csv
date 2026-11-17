@@ -1,0 +1,4 @@
+zone,samples,mae,bias,actual_mean,predicted_mean
+central,140,6.43,-2.238,52.007,49.769
+north,172,5.889,-3.003,42.18,39.178
+south,168,5.949,-2.395,36.655,34.26

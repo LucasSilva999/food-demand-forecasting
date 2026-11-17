@@ -1,0 +1,80 @@
+{
+  "baseline": {
+    "mae": 13.664,
+    "rmse": 17.242,
+    "r2": -0.013
+  },
+  "models": {
+    "random_forest": {
+      "cv_mae_mean": 6.44,
+      "cv_mae_std": 0.05,
+      "test_metrics": {
+        "mae": 6.371,
+        "rmse": 8.016,
+        "r2": 0.781
+      }
+    },
+    "linear_regression": {
+      "cv_mae_mean": 7.052,
+      "cv_mae_std": 0.182,
+      "test_metrics": {
+        "mae": 7.171,
+        "rmse": 9.057,
+        "r2": 0.72
+      }
+    },
+    "gradient_boosting": {
+      "cv_mae_mean": 6.064,
+      "cv_mae_std": 0.174,
+      "test_metrics": {
+        "mae": 6.07,
+        "rmse": 7.641,
+        "r2": 0.801
+      }
+    },
+    "tuned_gradient_boosting": {
+      "cv_mae_mean": 5.91,
+      "cv_mae_std": 0.155,
+      "test_metrics": {
+        "mae": 6.068,
+        "rmse": 7.641,
+        "r2": 0.801
+      },
+      "best_parameters": {
+        "model__learning_rate": 0.08,
+        "model__max_depth": 2,
+        "model__min_samples_leaf": 2,
+        "model__n_estimators": 200
+      }
+    }
+  },
+  "best_model": "tuned_gradient_boosting",
+  "best_model_test_metrics": {
+    "mae": 6.068,
+    "rmse": 7.641,
+    "r2": 0.801
+  },
+  "mae_improvement_vs_baseline_percent": 55.59,
+  "split": {
+    "train_rows": 1920,
+    "test_rows": 480,
+    "strategy": "chronological 80/20"
+  },
+  "cross_validation": {
+    "strategy": "TimeSeriesSplit",
+    "folds": 3
+  },
+  "hyperparameter_tuning": {
+    "method": "GridSearchCV",
+    "combinations": 36,
+    "selection_metric": "negative MAE"
+  },
+  "feature_engineering": [
+    "cyclical_hour",
+    "cyclical_weekday",
+    "promotion_hour_interaction",
+    "hour_period",
+    "hour_zone_interaction"
+  ],
+  "data": "synthetic; seed=42"
+}
